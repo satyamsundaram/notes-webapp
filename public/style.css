@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+#inlineContainer, header {
+    margin: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.midContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    background-image: url("https://images.unsplash.com/photo-1587145820137-a9dbc8c5ed99?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-repeat: cover;
+    background-position: center;
+}
+
+.midContainer a {
+    margin-top: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+footer {
+    margin: 20px 0 0 10px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+#add-note-btn a {
+    color: #fff;
+}
+
+footer p a:hover, #goBack:hover {
+    text-decoration: underline;
+}
+
+#bodyContainer {
+    margin-top: 50px;
+}
+
+#notesContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#note {
+    margin: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    height: 300px;
+    background-color: #f7f779;
+    position: relative;
+    cursor: pointer;
+}
+
+#note:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 30px 30px 0;
+    border-style: solid;
+    border-color: #dfdf79 #fff;
+    -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#note h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+#note p {
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 220px;
+    margin-top: 5px;
+}
+
+#note-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#note-form * {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 94vw;
+    font-size: large;
+}
+
+#note-form textarea {
+    height: 70vh;
+}
+
+/* #save-note-btn {
+    background-color: #ccc;
+    cursor: not-allowed;
+} */
+
+#delete-note-btn {
+    background-color: #ff0000;
+    color: #fff;
+    cursor: pointer;
+}
