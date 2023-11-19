@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 // Connect to MongoDB
 try {
@@ -21,7 +21,7 @@ try {
   console.log("Error connecting to MongoDB: ", err);
 }
 
-require("../config/passport")(passport); // load passport config
+require("./config/passport")(passport); // load passport config
 
 app.use(
   session({
@@ -35,8 +35,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
-require("../routes/authRoutes")(app, passport);
-require("../routes/apiRoutes")(app);
+require("./routes/authRoutes")(app, passport);
+require("./routes/apiRoutes")(app);
 
 const port = process.env.PORT | 3000;
 
