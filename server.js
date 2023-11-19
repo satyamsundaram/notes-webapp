@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const session = require("express-session");
+const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 
@@ -23,13 +23,26 @@ try {
 
 require("./config/passport")(passport); // load passport config
 
-app.use(
-  session({
-    secret: "my-secret",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+app.use(cookieSession({
+    name: "session",
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY]
+}))
+
+// register regenerate & save after the cookieSession middleware initialization
+app.use(function(request, response, next) {
+    if (request.session && !request.session.regenerate) {
+        request.session.regenerate = (cb) => {
+            cb()
+        }
+    }
+    if (request.session && !request.session.save) {
+        request.session.save = (cb) => {
+            cb()
+        }
+    }
+    next()
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -38,7 +51,7 @@ app.use(passport.session());
 require("./routes/authRoutes")(app, passport);
 require("./routes/apiRoutes")(app);
 
-const port = process.env.PORT | 5001;
+const port = process.env.PORT | 3000;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
